@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
-  modules: ['@nuxt/image', '@nuxtjs/tailwindcss', '@nuxtjs/google-fonts'],
+  modules: ['@nuxt/image', '@nuxtjs/tailwindcss', '@nuxtjs/google-fonts', '@nuxtjs/robots', '@nuxtjs/sitemap'],
   routeRules:{
     '/**': { cache: { maxAge: 60 * 60 * 60}, ssr: true, swr: true },
   },
@@ -16,6 +16,15 @@ export default defineNuxtConfig({
     base64: true,
     inject: true,
   },
+  runtimeConfig: {
+    public: {
+        siteUrl: 'https://gym-timer-tp.netlify.app',
+    },
+  },
+  site:{
+    name: 'Gym Timer',
+    url: 'https://gym-timer-tp.netlify.app',
+  },
   app:{
     head: {
       charset: 'utf-8',
@@ -28,7 +37,6 @@ export default defineNuxtConfig({
         { name: 'description', content: 'Spor salonunda kullanabileceğiniz profesyonel zamanlayıcı uygulaması. Antrenmanlarınızı daha verimli hale getirin.' },
         { name: 'keywords', content: 'gym timer, spor salonu zamanlayıcı, antrenman zamanlayıcı, egzersiz zamanlayıcı, workout timer' },
         { name: 'author', content: 'Gym Timer' },
-        { name: 'robots', content: 'index, follow' },
         { name: 'theme-color', content: '#EEEEEE' },
         // Open Graph / Facebook
         { property: 'og:type', content: 'website' },
@@ -47,7 +55,6 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'canonical', href: 'https://gym-timer-tp.netlify.app' }
       ]
     }
   }
