@@ -1,4 +1,15 @@
 <script setup lang="ts">
+const config = useRuntimeConfig()
+
+useHead({
+  link: [
+    {
+      rel: 'canonical',
+      href: `${config.public.siteUrl}/`
+    }
+  ]
+})
+
 const setCount = ref<number>(3)
 const setDuration = ref<number>(0)
 const restDuration = ref<number>(60)
