@@ -1,0 +1,40 @@
+{
+  "welcome": "Merhaba",
+  "gymTimer": "Gym Timer",
+  "home": {
+    "title": "Gym Timer",
+    "setCount": "Set Sayısı",
+    "setCountPlaceholder": "Örn: 3",
+    "setDuration": "Set Süresi (saniye) - Opsiyonel",
+    "setDurationPlaceholder": "0 = süresiz",
+    "setDurationInfo": "0 girerseniz süre sınırı olmaz",
+    "restDuration": "Dinlenme Süresi (saniye)",
+    "restDurationPlaceholder": "Örn: 60",
+    "startButton": "Başla"
+  },
+  "timer": {
+    "back": "Geri",
+    "set": "Set",
+    "workTime": "💪 Çalışma Zamanı",
+    "restTime": "😌 Dinlenme Zamanı",
+    "unlimited": "Süresiz",
+    "congratulations": "Tebrikler!",
+    "allSetsCompleted": "Tüm setleri tamamladınız!",
+    "start": "Başla",
+    "restart": "Yeniden Başla",
+    "pause": "Duraklat",
+    "continue": "Devam Et",
+    "goToRest": "Dinlenmeye Geç",
+    "reset": "Sıfırla",
+    "totalSets": "Toplam Set",
+    "work": "Çalışma",
+    "rest": "Dinlenme",
+    "seconds": "s",
+    "speech": {
+      "workTime": "Çalışma Zamanı",
+      "restTime": "Dinlenme Zamanı",
+      "congratulations": "Tebrikler! Tüm setleri tamamladınız",
+      "setWorkTime": "Set {number}. Çalışma Zamanı"
+    }
+  }
+}

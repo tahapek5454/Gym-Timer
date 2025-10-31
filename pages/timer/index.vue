@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { t, locale } = useI18n()
 const route = useRoute()
 const totalSets = computed(() => {
     const queryValue = Number(route.query.setCount);
@@ -61,7 +62,7 @@ const speak = (text: string) => {
     window.speechSynthesis.cancel()
     
     const utterance = new SpeechSynthesisUtterance(text)
-    utterance.lang = 'tr-TR'
+    utterance.lang = locale.value === 'tr' ? 'tr-TR' : 'en-US'
     utterance.rate = 1.0 // Konuşma hızı
     utterance.pitch = 1.0 // Ses tonu
     utterance.volume = 1.0 // Ses seviyesi
@@ -90,10 +91,10 @@ const startTimer = () => {
   
   if (isWorking.value) {
     timeLeft.value = setDuration.value
-    speak('Çalışma Zamanı')
+    speak(t('timer.speech.workTime'))
   } else {
     timeLeft.value = restDuration.value
-    speak('Dinlenme Zamanı')
+    speak(t('timer.speech.restTime'))
   }
   
   startInterval()
@@ -110,18 +111,18 @@ const handleTimeEnd = () => {
     if (currentSet.value < totalSets.value) {
       isWorking.value = false
       timeLeft.value = restDuration.value
-      speak('Dinlenme Zamanı')
+      speak(t('timer.speech.restTime'))
       startInterval()
     } else {
       isRunning.value = false
-      speak('Tebrikler! Tüm setleri tamamladınız')
+      speak(t('timer.speech.congratulations'))
       isEnd.value = true
     }
   } else {
     currentSet.value++
     isWorking.value = true
     timeLeft.value = setDuration.value
-    speak(`Set ${currentSet.value}. Çalışma Zamanı`)
+    speak(t('timer.speech.setWorkTime', { number: currentSet.value }))
     startInterval()
   }
 }
@@ -136,18 +137,18 @@ const nextPhase = () => {
     if (currentSet.value < totalSets.value) {
       isWorking.value = false
       timeLeft.value = restDuration.value
-      speak('Dinlenme Zamanı')
+      speak(t('timer.speech.restTime'))
       startInterval()
     } else {
       isRunning.value = false
-      speak('Tebrikler! Tüm setleri tamamladınız')
+      speak(t('timer.speech.congratulations'))
       isEnd.value = true
     }
   } else {
     currentSet.value++
     isWorking.value = true
     timeLeft.value = setDuration.value
-    speak(`Set ${currentSet.value}. Çalışma Zamanı`)
+    speak(t('timer.speech.setWorkTime', { number: currentSet.value }))
     if (setDuration.value > 0) {
       startInterval()
     }
@@ -215,16 +216,16 @@ onMounted(() => {
     <div class="w-full max-w-2xl">
       
       <div class="mb-6 sm:mb-8 flex items-center justify-between">
-        <NuxtLink 
+        <NuxtLinkLocale 
           to="/" 
           class="text-gray-600 hover:text-gray-800 transition-colors flex items-center gap-2"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
           </svg>
-          <span class="font-medium">Geri</span>
-        </NuxtLink>
-        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 italic">Gym Timer</h1>
+          <span class="font-medium">{{ t('timer.back') }}</span>
+        </NuxtLinkLocale>
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 italic">{{ t('gymTimer') }}</h1>
         <div class="w-16"></div>
       </div>
 
@@ -232,7 +233,7 @@ onMounted(() => {
         
         <div class="text-center mb-8">
           <div class="text-sm font-medium text-gray-500 mb-1">
-            Set
+            {{ t('timer.set') }}
           </div>
           <div class="text-4xl sm:text-5xl font-bold text-gray-800">
             {{ currentSet }} / {{ totalSets }}
@@ -248,7 +249,7 @@ onMounted(() => {
                 : 'bg-blue-100 text-blue-700 border-2 border-blue-300'
             ]"
           >
-            {{ isWorking ? '💪 Çalışma Zamanı' : '😌 Dinlenme Zamanı' }}
+            {{ isWorking ? t('timer.workTime') : t('timer.restTime') }}
           </div>
         </div>
 
@@ -293,7 +294,7 @@ onMounted(() => {
                   {{ setDuration === 0 && isWorking ? '--:--' : formattedTime }}
                 </div>
                 <div v-if="setDuration === 0 && isWorking && isRunning" class="text-sm text-gray-500 mt-2">
-                  Süresiz
+                  {{ t('timer.unlimited') }}
                 </div>
               </div>
             </div>
@@ -302,8 +303,8 @@ onMounted(() => {
 
         <div v-if="!isRunning && currentSet > totalSets" class="text-center mb-8">
           <div class="text-3xl mb-4">🎉</div>
-          <h2 class="text-2xl font-bold text-gray-800 mb-2">Tebrikler!</h2>
-          <p class="text-gray-600">Tüm setleri tamamladınız!</p>
+          <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ t('timer.congratulations') }}</h2>
+          <p class="text-gray-600">{{ t('timer.allSetsCompleted') }}</p>
         </div>
         <div class="flex flex-col sm:flex-row gap-3 justify-center">
           <button
@@ -311,7 +312,7 @@ onMounted(() => {
             @click="startTimer"
             class="px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
           >
-            {{ currentSet > totalSets ? 'Yeniden Başla' : 'Başla' }}
+            {{ currentSet > totalSets ? t('timer.restart') : t('timer.start') }}
           </button>
 
           <button
@@ -324,7 +325,7 @@ onMounted(() => {
                 : 'bg-yellow-500 hover:bg-yellow-600 text-white focus:ring-yellow-500'
             ]"
           >
-            {{ isPaused ? 'Devam Et' : 'Duraklat' }}
+            {{ isPaused ? t('timer.continue') : t('timer.pause') }}
           </button>
 
           <button
@@ -332,7 +333,7 @@ onMounted(() => {
             @click="nextPhase"
             class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
-            Dinlenmeye Geç
+            {{ t('timer.goToRest') }}
           </button>
 
           <button
@@ -340,23 +341,23 @@ onMounted(() => {
             @click="resetTimer"
             class="px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
           >
-            Sıfırla
+            {{ t('timer.reset') }}
           </button>
         </div>
 
         <div class="mt-8 pt-6 border-t border-gray-200">
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
             <div>
-              <div class="text-xs text-gray-500 mb-1">Toplam Set</div>
+              <div class="text-xs text-gray-500 mb-1">{{ t('timer.totalSets') }}</div>
               <div class="font-semibold text-gray-800">{{ totalSets }}</div>
             </div>
             <div>
-              <div class="text-xs text-gray-500 mb-1">Çalışma</div>
-              <div class="font-semibold text-gray-800">{{ setDuration === 0 ? 'Süresiz' : setDuration + 's' }}</div>
+              <div class="text-xs text-gray-500 mb-1">{{ t('timer.work') }}</div>
+              <div class="font-semibold text-gray-800">{{ setDuration === 0 ? t('timer.unlimited') : setDuration + t('timer.seconds') }}</div>
             </div>
             <div class="col-span-2 sm:col-span-1">
-              <div class="text-xs text-gray-500 mb-1">Dinlenme</div>
-              <div class="font-semibold text-gray-800">{{ restDuration }}s</div>
+              <div class="text-xs text-gray-500 mb-1">{{ t('timer.rest') }}</div>
+              <div class="font-semibold text-gray-800">{{ restDuration }}{{ t('timer.seconds') }}</div>
             </div>
           </div>
         </div>

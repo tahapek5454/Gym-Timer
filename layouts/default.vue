@@ -1,6 +1,7 @@
 <template>
     <div class="font-sans bg-base-background min-h-screen">
-        <NuxtLoadingIndicator/>
+        <NuxtLoadingIndicator />
+        <LanguageSwitch />
         <slot />
     </div>
 </template>

@@ -1,0 +1,40 @@
+{
+  "welcome": "Welcome",
+  "gymTimer": "Gym Timer",
+  "home": {
+    "title": "Gym Timer",
+    "setCount": "Number of Sets",
+    "setCountPlaceholder": "E.g: 3",
+    "setDuration": "Set Duration (seconds) - Optional",
+    "setDurationPlaceholder": "0 = unlimited",
+    "setDurationInfo": "Enter 0 for no time limit",
+    "restDuration": "Rest Duration (seconds)",
+    "restDurationPlaceholder": "E.g: 60",
+    "startButton": "Start"
+  },
+  "timer": {
+    "back": "Back",
+    "set": "Set",
+    "workTime": "💪 Work Time",
+    "restTime": "😌 Rest Time",
+    "unlimited": "Unlimited",
+    "congratulations": "Congratulations!",
+    "allSetsCompleted": "You completed all sets!",
+    "start": "Start",
+    "restart": "Restart",
+    "pause": "Pause",
+    "continue": "Continue",
+    "goToRest": "Go to Rest",
+    "reset": "Reset",
+    "totalSets": "Total Sets",
+    "work": "Work",
+    "rest": "Rest",
+    "seconds": "s",
+    "speech": {
+      "workTime": "Work Time",
+      "restTime": "Rest Time",
+      "congratulations": "Congratulations! You completed all sets",
+      "setWorkTime": "Set {number}. Work Time"
+    }
+  }
+}

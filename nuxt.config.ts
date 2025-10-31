@@ -30,9 +30,6 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       title: 'Gym Timer - Antrenman Zamanlayıcı Uygulaması',
-      htmlAttrs: {
-        lang: 'tr'
-      },
       meta: [
         { name: 'description', content: 'Spor salonunda kullanabileceğiniz profesyonel zamanlayıcı uygulaması. Antrenmanlarınızı daha verimli hale getirin.' },
         { name: 'keywords', content: 'gym timer, spor salonu zamanlayıcı, antrenman zamanlayıcı, egzersiz zamanlayıcı, workout timer' },
@@ -60,9 +57,13 @@ export default defineNuxtConfig({
   },
   i18n: {
     locales: [
-      { code: 'en', language: 'en-US' },
-      { code: 'tr', language: 'tr-TR' }
+      { code: 'tr', name: 'Türkçe', file: 'tr.json' },
+      { code: 'en', name: 'English', file: 'en.json' }
     ],
+    langDir: 'locales',
     defaultLocale: 'tr',
+    strategy: 'prefix_except_default',
+    detectBrowserLanguage: false,
+    vueI18n: './i18n.config.ts'
   }
 })
