@@ -64,6 +64,5 @@ export default defineNuxtConfig({
     defaultLocale: 'tr',
     strategy: 'prefix_except_default',
     detectBrowserLanguage: false,
-    vueI18n: './i18n.config.ts'
   }
 })
