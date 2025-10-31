@@ -29,12 +29,6 @@
     "totalSets": "Toplam Set",
     "work": "Çalışma",
     "rest": "Dinlenme",
-    "seconds": "s",
-    "speech": {
-      "workTime": "Çalışma Zamanı",
-      "restTime": "Dinlenme Zamanı",
-      "congratulations": "Tebrikler! Tüm setleri tamamladınız",
-      "setWorkTime": "Set {number}. Çalışma Zamanı"
-    }
+    "seconds": "s"
   }
 }

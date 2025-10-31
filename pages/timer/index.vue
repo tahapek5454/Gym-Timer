@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const route = useRoute()
 const totalSets = computed(() => {
     const queryValue = Number(route.query.setCount);
@@ -56,18 +56,54 @@ const isEnd = ref(false)
 
 let intervalId: ReturnType<typeof setInterval> | null = null
 
+// Audio nesnelerini önceden yükle (mobil uyumluluk için)
+const workAudio = ref<HTMLAudioElement | null>(null)
+const restAudio = ref<HTMLAudioElement | null>(null)
+const endAudio = ref<HTMLAudioElement | null>(null)
+let currentAudio: HTMLAudioElement | null = null
 
-const speak = (text: string) => {
-  if ('speechSynthesis' in window) {
-    window.speechSynthesis.cancel()
-    
-    const utterance = new SpeechSynthesisUtterance(text)
-    utterance.lang = locale.value === 'tr' ? 'tr-TR' : 'en-US'
-    utterance.rate = 1.0 // Konuşma hızı
-    utterance.pitch = 1.0 // Ses tonu
-    utterance.volume = 1.0 // Ses seviyesi
-    
-    window.speechSynthesis.speak(utterance)
+const initAudio = () => {
+  // Audio nesnelerini kullanıcı etkileşimi ile başlat (mobil tarayıcılar için gerekli)
+  if (!workAudio.value) {
+    workAudio.value = new Audio('/sounds/work.mp3')
+    workAudio.value.volume = 0.7
+    workAudio.value.load()
+  }
+  if (!restAudio.value) {
+    restAudio.value = new Audio('/sounds/rest.mp3')
+    restAudio.value.volume = 0.7
+    restAudio.value.load()
+  }
+  if (!endAudio.value) {
+    endAudio.value = new Audio('/sounds/end.mp3')
+    endAudio.value.volume = 0.7
+    endAudio.value.load()
+  }
+}
+
+const playSound = (soundType: 'work' | 'rest' | 'end') => {
+  // Önceki sesi durdur
+  if (currentAudio) {
+    currentAudio.pause()
+    currentAudio.currentTime = 0
+  }
+  
+  // Doğru ses dosyasını seç
+  let audioToPlay: HTMLAudioElement | null = null
+  if (soundType === 'work' && workAudio.value) {
+    audioToPlay = workAudio.value
+  } else if (soundType === 'rest' && restAudio.value) {
+    audioToPlay = restAudio.value
+  } else if (soundType === 'end' && endAudio.value) {
+    audioToPlay = endAudio.value
+  }
+  
+  if (audioToPlay) {
+    currentAudio = audioToPlay
+    audioToPlay.currentTime = 0
+    audioToPlay.play().catch(err => {
+      console.error('Ses çalma hatası:', err)
+    })
   }
 }
 
@@ -86,15 +122,18 @@ const startInterval = () => {
 }
 
 const startTimer = () => {
+  // İlk kullanıcı etkileşiminde audio'ları başlat (mobil uyumluluk için)
+  initAudio()
+  
   isRunning.value = true
   isPaused.value = false
   
   if (isWorking.value) {
     timeLeft.value = setDuration.value
-    speak(t('timer.speech.workTime'))
+    playSound('work')
   } else {
     timeLeft.value = restDuration.value
-    speak(t('timer.speech.restTime'))
+    playSound('rest')
   }
   
   startInterval()
@@ -111,18 +150,18 @@ const handleTimeEnd = () => {
     if (currentSet.value < totalSets.value) {
       isWorking.value = false
       timeLeft.value = restDuration.value
-      speak(t('timer.speech.restTime'))
+      playSound('rest')
       startInterval()
     } else {
       isRunning.value = false
-      speak(t('timer.speech.congratulations'))
+      playSound('end')
       isEnd.value = true
     }
   } else {
     currentSet.value++
     isWorking.value = true
     timeLeft.value = setDuration.value
-    speak(t('timer.speech.setWorkTime', { number: currentSet.value }))
+    playSound('work')
     startInterval()
   }
 }
@@ -137,18 +176,18 @@ const nextPhase = () => {
     if (currentSet.value < totalSets.value) {
       isWorking.value = false
       timeLeft.value = restDuration.value
-      speak(t('timer.speech.restTime'))
+      playSound('rest')
       startInterval()
     } else {
       isRunning.value = false
-      speak(t('timer.speech.congratulations'))
+      playSound('end')
       isEnd.value = true
     }
   } else {
     currentSet.value++
     isWorking.value = true
     timeLeft.value = setDuration.value
-    speak(t('timer.speech.setWorkTime', { number: currentSet.value }))
+    playSound('work')
     if (setDuration.value > 0) {
       startInterval()
     }
@@ -174,6 +213,14 @@ const resetTimer = () => {
     clearInterval(intervalId)
     intervalId = null
   }
+  
+  // Çalan müziği durdur
+  if (currentAudio) {
+    currentAudio.pause()
+    currentAudio.currentTime = 0
+    currentAudio = null
+  }
+  
   currentSet.value = 1
   isWorking.value = true
   timeLeft.value = 0
@@ -201,6 +248,26 @@ const progressPercent = computed(() => {
 onUnmounted(() => {
   if (intervalId) {
     clearInterval(intervalId)
+  }
+  
+  // Ses dosyalarını temizle
+  if (currentAudio) {
+    currentAudio.pause()
+    currentAudio = null
+  }
+  
+  // Audio nesnelerini temizle
+  if (workAudio.value) {
+    workAudio.value.pause()
+    workAudio.value = null
+  }
+  if (restAudio.value) {
+    restAudio.value.pause()
+    restAudio.value = null
+  }
+  if (endAudio.value) {
+    endAudio.value.pause()
+    endAudio.value = null
   }
 })
 

@@ -29,12 +29,6 @@
     "totalSets": "Total Sets",
     "work": "Work",
     "rest": "Rest",
-    "seconds": "s",
-    "speech": {
-      "workTime": "Work Time",
-      "restTime": "Rest Time",
-      "congratulations": "Congratulations! You completed all sets",
-      "setWorkTime": "Set {number}. Work Time"
-    }
+    "seconds": "s"
   }
 }
