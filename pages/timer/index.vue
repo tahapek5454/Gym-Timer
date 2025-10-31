@@ -1,15 +1,4 @@
 <script setup lang="ts">
-const config = useRuntimeConfig()
-
-useHead({
-  link: [
-    {
-      rel: 'canonical',
-      href: `${config.public.siteUrl}/timer`
-    }
-  ]
-})
-
 const route = useRoute()
 const totalSets = computed(() => {
     const queryValue = Number(route.query.setCount);

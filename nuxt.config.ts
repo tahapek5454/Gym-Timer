@@ -1,10 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
+  compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
-  modules: ['@nuxt/image', '@nuxtjs/tailwindcss', '@nuxtjs/google-fonts', '@nuxtjs/robots', '@nuxtjs/sitemap'],
+  modules: ['@nuxt/image', '@nuxtjs/tailwindcss', '@nuxtjs/google-fonts', '@nuxtjs/robots', '@nuxtjs/sitemap', '@nuxtjs/i18n', 'nuxt-seo-utils'],
   routeRules:{
-    '/**': { cache: { maxAge: 60 * 60 * 60}, ssr: true, swr: true },
+    '/**': { cache: { maxAge: 60 * 60 * 60}, swr: true },
   },
   googleFonts: {
     families: {
@@ -57,5 +57,12 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       ]
     }
+  },
+  i18n: {
+    locales: [
+      { code: 'en', language: 'en-US' },
+      { code: 'tr', language: 'tr-TR' }
+    ],
+    defaultLocale: 'tr',
   }
 })
