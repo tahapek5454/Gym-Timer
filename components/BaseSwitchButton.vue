@@ -29,7 +29,7 @@ defineEmits<{
             :aria-checked="modelValue"
             @click="$emit('update:modelValue', !modelValue)"
             :class="[
-                'relative inline-flex h-6 w-10 sm:h-8 sm:w-14 items-center rounded-full transition-all duration-300 ease-in-out focus:outline-none',
+                'relative inline-flex h-6 w-11 sm:h-8 sm:w-14 items-center rounded-full transition-all duration-300 ease-in-out focus:outline-none',
                 modelValue ? 'bg-green-500' : 'bg-gray-300',
                 $attrs.class
             ]"
@@ -37,8 +37,8 @@ defineEmits<{
             <!-- Slider -->
             <span
                 :class="[
-                    'inline-block h-4 w-4 sm:h-6 sm:w-6 transform rounded-full bg-white shadow-lg transition-transform duration-300 ease-in-out',
-                    modelValue ? 'translate-x-7 sm:translate-x-7' : 'translate-x-1'
+                    'inline-block h-5 w-5 sm:h-6 sm:w-6 transform rounded-full bg-white shadow-lg transition-transform duration-300 ease-in-out',
+                    modelValue ? 'translate-x-5 sm:translate-x-7' : 'translate-x-1'
                 ]"
             />
         </button>
