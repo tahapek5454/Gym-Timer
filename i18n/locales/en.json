@@ -10,10 +10,10 @@
     "setDurationInfo": "Enter 0 for no time limit",
     "restDuration": "Rest Duration (seconds)",
     "restDurationPlaceholder": "E.g: 60",
-    "startButton": "Start"
+    "startButton": "Start",
+    "voiceModeSelected": "Voice mode selected"
   },
   "timer": {
-    "back": "Back",
     "set": "Set",
     "workTime": "💪 Work Time",
     "restTime": "😌 Rest Time",
@@ -25,10 +25,22 @@
     "pause": "Pause",
     "continue": "Continue",
     "goToRest": "Go to Rest",
+    "finishSet": "Finish Set",
+    "finishRest": "Finish Rest",
     "reset": "Reset",
     "totalSets": "Total Sets",
     "work": "Work",
     "rest": "Rest",
-    "seconds": "s"
+    "seconds": "s",
+    "soundMode": {
+      "title": "Choose Sound Type",
+      "music": "Music",
+      "voice": "Voice Command"
+    },
+    "voiceCommands": {
+      "work": "Work time",
+      "rest": "Rest time",
+      "end": "Congratulations you have completed all your sets"
+    }
   }
 }

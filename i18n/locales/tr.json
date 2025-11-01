@@ -10,10 +10,10 @@
     "setDurationInfo": "0 girerseniz süre sınırı olmaz",
     "restDuration": "Dinlenme Süresi (saniye)",
     "restDurationPlaceholder": "Örn: 60",
-    "startButton": "Başla"
+    "startButton": "Başla",
+    "voiceModeSelected": "Konuşma modu seçildi"
   },
   "timer": {
-    "back": "Geri",
     "set": "Set",
     "workTime": "💪 Çalışma Zamanı",
     "restTime": "😌 Dinlenme Zamanı",
@@ -25,10 +25,22 @@
     "pause": "Duraklat",
     "continue": "Devam Et",
     "goToRest": "Dinlenmeye Geç",
+    "finishSet": "Seti Bitir",
+    "finishRest": "Dinlenmeyi Bitir",
     "reset": "Sıfırla",
     "totalSets": "Toplam Set",
     "work": "Çalışma",
     "rest": "Dinlenme",
-    "seconds": "s"
+    "seconds": "s",
+    "soundMode": {
+      "title": "Ses Tipi Seçin",
+      "music": "Müzik",
+      "voice": "Sesli Komut"
+    },
+    "voiceCommands": {
+      "work": "Çalışma zamanı",
+      "rest": "Dinlenme zamanı",
+      "end": "Tebrikler tüm setleri tamamladınız"
+    }
   }
 }
