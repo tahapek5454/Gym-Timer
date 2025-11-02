@@ -2,9 +2,16 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
-  modules: ['@nuxt/image', '@nuxtjs/tailwindcss', '@nuxtjs/google-fonts', '@nuxtjs/robots', '@nuxtjs/sitemap', '@nuxtjs/i18n', 'nuxt-seo-utils'],
+  modules: ['@nuxt/image', '@nuxtjs/tailwindcss', '@nuxtjs/color-mode', '@nuxtjs/google-fonts', '@nuxtjs/robots', '@nuxtjs/sitemap', '@nuxtjs/i18n', 'nuxt-seo-utils'],
+  colorMode: {
+    classSuffix: '',
+    classPrefix: '',
+    preference: 'system', // default value of $colorMode.preference
+    fallback: 'light', // fallback value if not system preference found
+    storageKey: 'nuxt-color-mode'
+  },
   routeRules:{
-    '/**': { cache: { maxAge: 60 * 60 * 60}, swr: true },
+    '/**': { cache: { maxAge: 60 * 60 * 60 }, swr: true, headers: { 'Cache-Control': 'public, max-age=3600, s-maxage=216000, stale-while-revalidate' } },
   },
   googleFonts: {
     families: {

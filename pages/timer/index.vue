@@ -350,7 +350,7 @@ onMounted(() => {
   <div class="min-h-screen w-full flex items-center justify-center p-4 sm:p-6">
     <div class="w-full max-w-2xl">
       <div class="mb-6 sm:mb-8 flex items-center justify-between">
-        <NuxtLinkLocale to="/" class="text-gray-600 hover:text-gray-800 transition-colors">
+        <NuxtLinkLocale to="/" class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor"
             stroke="currentColor" stroke-width="0.5">
             <path fill-rule="evenodd"
@@ -358,8 +358,8 @@ onMounted(() => {
               clip-rule="evenodd" />
           </svg>
         </NuxtLinkLocale>
-        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 italic">{{ t('gymTimer') }}</h1>
-        <button @click="toggleSound" class="text-gray-600 hover:text-gray-800 transition-colors p-1"
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100 italic">{{ t('gymTimer') }}</h1>
+        <button @click="toggleSound" class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors p-1"
           :title="soundMode === 'off' ? 'Sesi Aç' : 'Sesi Kapat'">
           <svg v-if="soundMode !== 'off'" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24"
             fill="currentColor">
@@ -373,12 +373,12 @@ onMounted(() => {
         </button>
       </div>
 
-      <div class="bg-white rounded-2xl shadow-2xl border border-gray-200 p-6 sm:p-10 overflow-hidden">
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-6 sm:p-10 overflow-hidden transition-colors duration-200">
         <div class="text-center mb-8">
-          <div class="text-sm font-medium text-gray-500 mb-1">
+          <div class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
             {{ t('timer.set') }}
           </div>
-          <div class="text-4xl sm:text-5xl font-bold text-gray-800">
+          <div class="text-4xl sm:text-5xl font-bold text-gray-800 dark:text-gray-100">
             {{ currentSet }} / {{ totalSets }}
           </div>
         </div>
@@ -387,8 +387,8 @@ onMounted(() => {
           <div :class="[
               'px-6 py-3 rounded-full font-semibold text-lg transition-all duration-300',
               isWorking 
-                ? 'bg-green-100 text-green-700 border-2 border-green-300' 
-                : 'bg-blue-100 text-blue-700 border-2 border-blue-300'
+                ? 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 border-2 border-green-300 dark:border-green-600' 
+                : 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 border-2 border-blue-300 dark:border-blue-600'
             ]">
             {{ isWorking ? t('timer.workTime') : t('timer.restTime') }}
           </div>
@@ -398,7 +398,7 @@ onMounted(() => {
           <div class="flex justify-center items-center">
             <div class="relative">
               <svg class="transform -rotate-90 w-64 h-64 sm:w-80 sm:h-80">
-                <circle cx="50%" cy="50%" r="120" stroke="#E5E7EB" stroke-width="12" fill="none" />
+                <circle cx="50%" cy="50%" r="120" stroke="#E5E7EB" class="dark:stroke-gray-700" stroke-width="12" fill="none" />
                 <circle cx="50%" cy="50%" r="120" :stroke="isWorking ? '#10B981' : '#3B82F6'" stroke-width="12"
                   fill="none" :stroke-dasharray="2 * Math.PI * 120"
                   :stroke-dashoffset="2 * Math.PI * 120 * (1 - progressPercent / 100)"
@@ -406,14 +406,14 @@ onMounted(() => {
               </svg>
 
               <div class="absolute inset-0 flex flex-col items-center justify-center">
-                <div v-if="!isRunning" class="text-6xl sm:text-7xl font-bold text-gray-800">
+                <div v-if="!isRunning" class="text-6xl sm:text-7xl font-bold text-gray-800 dark:text-gray-100">
                   {{ setDuration === 0 && isWorking ? '--:--' : formattedTime }}
                 </div>
                 <div v-else class="text-6xl sm:text-7xl font-bold"
-                  :class="isWorking ? 'text-green-600' : 'text-blue-600'">
+                  :class="isWorking ? 'text-green-600 dark:text-green-400' : 'text-blue-600 dark:text-blue-400'">
                   {{ setDuration === 0 && isWorking ? '--:--' : formattedTime }}
                 </div>
-                <div v-if="setDuration === 0 && isWorking && isRunning" class="text-sm text-gray-500 mt-2">
+                <div v-if="setDuration === 0 && isWorking && isRunning" class="text-sm text-gray-500 dark:text-gray-400 mt-2">
                   {{ t('timer.unlimited') }}
                 </div>
               </div>
@@ -423,52 +423,52 @@ onMounted(() => {
 
         <div v-if="!isRunning && currentSet > totalSets" class="text-center mb-8">
           <div class="text-3xl mb-4">🎉</div>
-          <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ t('timer.congratulations') }}</h2>
-          <p class="text-gray-600">{{ t('timer.allSetsCompleted') }}</p>
+          <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">{{ t('timer.congratulations') }}</h2>
+          <p class="text-gray-600 dark:text-gray-400">{{ t('timer.allSetsCompleted') }}</p>
         </div>
 
         <div class="grid grid-cols-2 gap-3 ">
           <BaseButton v-if="!isRunning && !isEnd" @click="startTimer"
-            class="bg-green-600 hover:bg-green-700 text-white col-span-2">
+            class="bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white col-span-2">
             {{ currentSet > totalSets ? t('timer.restart') : t('timer.start') }}
           </BaseButton>
 
           <BaseButton v-if="isRunning && !(setDuration === 0 && isWorking) && !isEnd" @click="togglePause" :class="isPaused 
-              ? 'bg-green-600 hover:bg-green-700 text-white' 
-              : 'bg-yellow-500 hover:bg-yellow-600 text-white'" class="col-span-2 sm:col-span-1">
+              ? 'bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white' 
+              : 'bg-yellow-500 hover:bg-yellow-600 dark:bg-yellow-400 dark:hover:bg-yellow-500 text-white'" class="col-span-2 sm:col-span-1">
             {{ isPaused ? t('timer.continue') : t('timer.pause') }}
           </BaseButton>
 
           <BaseButton v-if="isRunning && setDuration === 0 && isWorking && !isEnd" @click="nextPhase"
-            class="bg-blue-600 hover:bg-blue-700 text-white col-span-2 sm:col-span-1">
+            class="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white col-span-2 sm:col-span-1">
             {{ t('timer.goToRest') }}
           </BaseButton>
 
           <BaseButton v-if="isRunning || isEnd" @click="resetTimer"
-            class="bg-red-600 hover:bg-red-700 text-white col-span-2 sm:col-span-1">
+            :class="`bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 text-white col-span-2 ${isEnd ? 'sm:col-span-2' : 'sm:col-span-1'}`">
             {{ t('timer.reset') }}
           </BaseButton>
 
           <BaseButton v-if="isRunning && !isEnd && !(setDuration === 0 && isWorking)" @click="nextPhase"
-            class="bg-green-600 hover:bg-green-700 text-white col-span-2">
+            class="bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white col-span-2">
             {{ isWorking ? t('timer.finishSet') : t('timer.finishRest') }}
           </BaseButton>
         </div>
 
-        <div class="mt-8 pt-6 border-t border-gray-200">
+        <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
             <div>
-              <div class="text-xs text-gray-500 mb-1">{{ t('timer.totalSets') }}</div>
-              <div class="font-semibold text-gray-800">{{ totalSets }}</div>
+              <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">{{ t('timer.totalSets') }}</div>
+              <div class="font-semibold text-gray-800 dark:text-gray-200">{{ totalSets }}</div>
             </div>
             <div>
-              <div class="text-xs text-gray-500 mb-1">{{ t('timer.work') }}</div>
-              <div class="font-semibold text-gray-800">{{ setDuration === 0 ? t('timer.unlimited') : setDuration +
+              <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">{{ t('timer.work') }}</div>
+              <div class="font-semibold text-gray-800 dark:text-gray-200">{{ setDuration === 0 ? t('timer.unlimited') : setDuration +
                 t('timer.seconds') }}</div>
             </div>
             <div class="col-span-2 sm:col-span-1">
-              <div class="text-xs text-gray-500 mb-1">{{ t('timer.rest') }}</div>
-              <div class="font-semibold text-gray-800">{{ restDuration }}{{ t('timer.seconds') }}</div>
+              <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">{{ t('timer.rest') }}</div>
+              <div class="font-semibold text-gray-800 dark:text-gray-200">{{ restDuration }}{{ t('timer.seconds') }}</div>
             </div>
           </div>
         </div>

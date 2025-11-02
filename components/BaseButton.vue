@@ -6,7 +6,7 @@ defineOptions({
 
 <template>
     <button
-        :class="['px-8 py-4 font-semibold rounded-xl transition-all transform hover:scale-105 active:scale-95 focus:scale-100 focus:outline-none', $attrs.class]"
+        :class="['px-8 py-4 font-semibold rounded-xl transition-all transform hover:scale-105 active:scale-95 focus:scale-100 focus:outline-none dark:shadow-lg', $attrs.class]"
         v-bind="{ ...$attrs, class: undefined }">
         <slot />
     </button>
