@@ -14,13 +14,13 @@ export interface WorkoutConfig {
 }
 
 const createDefaultSet = (): SetConfig => ({
-  duration: 45,
-  restDuration: 30
+  duration: 30,
+  restDuration: 2
 })
 
 const createDefaultSuperSet = (): SuperSet => ({
   sets: [createDefaultSet(), createDefaultSet(), createDefaultSet()],
-  restAfterSuperSet: 120
+  restAfterSuperSet: 60
 })
 
 const createDefaultConfig = (): WorkoutConfig => ({
