@@ -3,20 +3,34 @@
   "gymTimer": "Gym Timer",
   "home": {
     "title": "Gym Timer",
-    "setCount": "Set Sayısı",
-    "setCountPlaceholder": "Örn: 3",
-    "setDuration": "Set Süresi (saniye) - Opsiyonel",
+    "superSet": "Süper Set",
+    "addSuperSet": "Süper Set Ekle",
+    "removeSuperSet": "Süper Seti Kaldır",
+    "set": "Set",
+    "addSet": "Set Ekle",
+    "removeSet": "Seti Kaldır",
+    "setDuration": "Süre (s)",
     "setDurationPlaceholder": "0 = süresiz",
     "setDurationInfo": "0 girerseniz süre sınırı olmaz",
-    "restDuration": "Dinlenme Süresi (saniye)",
-    "restDurationPlaceholder": "Örn: 60",
-    "startButton": "Başla",
-    "voiceModeSelected": "Konuşma modu seçildi"
+    "restAfterSet": "Dinlenme (s)",
+    "restAfterSetPlaceholder": "Örn: 30",
+    "restAfterSuperSet": "Süper Set Sonrası Dinlenme (s)",
+    "restAfterSuperSetPlaceholder": "Örn: 120",
+    "applyToAll": "Tüm setlere uygula",
+    "startButton": "Zamanlayıcıyı Başlat",
+    "voiceModeSelected": "Konuşma modu seçildi",
+    "collapse": "Daralt",
+    "expand": "Genişlet",
+    "sets": "set",
+    "totalSuperSets": "Süper Set",
+    "totalSets": "Toplam Set"
   },
   "timer": {
     "set": "Set",
+    "superSet": "Süper Set",
     "workTime": "💪 Çalışma Zamanı",
     "restTime": "😌 Dinlenme Zamanı",
+    "superSetRestTime": "🔄 Süper Set Dinlenmesi",
     "unlimited": "Süresiz",
     "congratulations": "Tebrikler!",
     "allSetsCompleted": "Tüm setleri tamamladınız!",
@@ -27,10 +41,13 @@
     "goToRest": "Dinlenmeye Geç",
     "finishSet": "Seti Bitir",
     "finishRest": "Dinlenmeyi Bitir",
+    "skipSuperSetRest": "Süper Set Dinlenmesini Atla",
     "reset": "Sıfırla",
     "totalSets": "Toplam Set",
+    "totalSuperSets": "Süper Set",
     "work": "Çalışma",
     "rest": "Dinlenme",
+    "superSetRest": "SS Dinlenme",
     "seconds": "s",
     "soundMode": {
       "title": "Ses Tipi Seçin",
@@ -40,6 +57,7 @@
     "voiceCommands": {
       "work": "Çalışma zamanı",
       "rest": "Dinlenme zamanı",
+      "superSetRest": "Süper set dinlenme zamanı",
       "end": "Tebrikler tüm setleri tamamladınız"
     }
   }

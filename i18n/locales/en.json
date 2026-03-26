@@ -3,20 +3,34 @@
   "gymTimer": "Gym Timer",
   "home": {
     "title": "Gym Timer",
-    "setCount": "Number of Sets",
-    "setCountPlaceholder": "E.g: 3",
-    "setDuration": "Set Duration (seconds) - Optional",
+    "superSet": "Super Set",
+    "addSuperSet": "Add Super Set",
+    "removeSuperSet": "Remove Super Set",
+    "set": "Set",
+    "addSet": "Add Set",
+    "removeSet": "Remove Set",
+    "setDuration": "Duration (s)",
     "setDurationPlaceholder": "0 = unlimited",
     "setDurationInfo": "Enter 0 for no time limit",
-    "restDuration": "Rest Duration (seconds)",
-    "restDurationPlaceholder": "E.g: 60",
-    "startButton": "Start",
-    "voiceModeSelected": "Voice mode selected"
+    "restAfterSet": "Rest (s)",
+    "restAfterSetPlaceholder": "E.g: 30",
+    "restAfterSuperSet": "Rest After Super Set (s)",
+    "restAfterSuperSetPlaceholder": "E.g: 120",
+    "applyToAll": "Apply to all sets",
+    "startButton": "Start Timer",
+    "voiceModeSelected": "Voice mode selected",
+    "collapse": "Collapse",
+    "expand": "Expand",
+    "sets": "sets",
+    "totalSuperSets": "Super Sets",
+    "totalSets": "Total Sets"
   },
   "timer": {
     "set": "Set",
+    "superSet": "Super Set",
     "workTime": "💪 Work Time",
     "restTime": "😌 Rest Time",
+    "superSetRestTime": "🔄 Super Set Rest",
     "unlimited": "Unlimited",
     "congratulations": "Congratulations!",
     "allSetsCompleted": "You completed all sets!",
@@ -27,10 +41,13 @@
     "goToRest": "Go to Rest",
     "finishSet": "Finish Set",
     "finishRest": "Finish Rest",
+    "skipSuperSetRest": "Skip Super Set Rest",
     "reset": "Reset",
     "totalSets": "Total Sets",
+    "totalSuperSets": "Super Sets",
     "work": "Work",
     "rest": "Rest",
+    "superSetRest": "SS Rest",
     "seconds": "s",
     "soundMode": {
       "title": "Choose Sound Type",
@@ -40,6 +57,7 @@
     "voiceCommands": {
       "work": "Work time",
       "rest": "Rest time",
+      "superSetRest": "Super set rest time",
       "end": "Congratulations you have completed all your sets"
     }
   }
